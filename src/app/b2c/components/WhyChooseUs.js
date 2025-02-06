@@ -37,8 +37,8 @@ const WhyChooseUs = () => {
         </MainHeading>
         <div className="flex items-center bg-[#0D68FB] rounded-full w-fit ">
           {[
-            ["Buyers", true],
-            ["Suppliers", false],
+            ["Buyers", false],
+            ["Suppliers", true],
           ].map(([item, active], idx) => (
             <div
               key={idx}
