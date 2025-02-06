@@ -2,6 +2,9 @@ import CenterWrapper from '@/components/CenterWrapper'
 import { MainHeading } from '@/components/MainHeading'
 
 import { IMG_PLACEHOLDER } from '@/utils/constants'
+import img1 from "@/assets/b2c/image 195.png"
+import img2 from "@/assets/b2c/image 204.jpg"
+import img3 from "@/assets/b2c/image 207.png"
 import Image from 'next/image'
 import React from 'react'
 
@@ -12,7 +15,7 @@ export default function GreatDeals() {
             discount: "Get 20% off",
             color: "#D9FCF6",
             textColor: "#6FB3A2",
-            image: IMG_PLACEHOLDER,
+            image: img1,
             isImageTop: true
         },
         {
@@ -20,7 +23,7 @@ export default function GreatDeals() {
             discount: "Get upto 40% off on bulk orders",
             color: "#FFEDDE",
             textColor: "#B38F7A",
-            image: IMG_PLACEHOLDER,
+            image: img3,
             isImageTop: false
         },
         {
@@ -28,7 +31,7 @@ export default function GreatDeals() {
             discount: "Get upto 20% off on bulk orders",
             color: "#ECDAF2",
             textColor: "#A87FB3",
-            image: IMG_PLACEHOLDER,
+            image: img2,
             isImageTop: true
         },
     ]
@@ -58,7 +61,7 @@ const Card= ({data})=> {
         <p className='font-semibold'>{data.discount}</p>
     </div>
     <div>
-        <Image src={data.image} alt="img" width={150} height={150} className="h-full object-cover ml-auto"/>
+        <Image src={data.image} alt="img" width={250} height={150} className="h-full object-cover ml-auto"/>
     </div>
         </div>
     )
