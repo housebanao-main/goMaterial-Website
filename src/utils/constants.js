@@ -1,0 +1,1 @@
+export const IMG_PLACEHOLDER= "https://placehold.jp/700x700.png"

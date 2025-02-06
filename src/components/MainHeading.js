@@ -1,8 +1,15 @@
 import React from 'react'
 
+
+
+export  function LargeHeading({className, children}) {
+  return (
+   <h1 className={`${className} text-4xl `}>{children}</h1>
+  )
+}
 export const MainHeading = ({children, className}) => {
   return (
-    <h2 className={`${className} text-xl`}>{children}</h2>
+    <h2 className={`${className} text-2xl`}>{children}</h2>
   )
 }
 
