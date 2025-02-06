@@ -30,7 +30,7 @@ const Navbar = () => {
 
     ]
   return (
-   <CenterWrapper className={"flex gap-8 items-center pt-4 pb-4"}>
+   <CenterWrapper className={"flex gap-8 items-center pt-4 pb-4 bg-slate-900 text-white"}>
     <div className='flex gap-1 items-center '><BiCategory /> All categories <RiArrowDropDownLine size={"20px"}/></div>
 
 {arr.map(({name},idx)=>(
