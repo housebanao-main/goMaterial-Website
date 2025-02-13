@@ -60,22 +60,23 @@ export default function NewsData() {
       )}
       {filteredNewsData.length > 0 &&
         filteredNewsData.map((news, index) => (
-          <NewsCard news={news} key={index} />
+          <NewsCard news={news} index={index} key={index} whatsapp={Math.ceil(Math.random()*10)} likes= {Math.ceil(Math.random()*10)+10}  />
         ))}
     </div>
   );
 }
 
-const NewsCard = ({ news }) => {
+const NewsCard = ({ news, whatsapp, likes ,index}) => {
+    const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className=" bg-white rounded-lg shadow-md overflow-hidden relative ">
+    <div onMouseEnter={()=> setIsHovered(true)} onMouseLeave={()=> setIsHovered(false)} className=" bg-white rounded-lg shadow-md overflow-hidden relative ">
       <div className="flex gap-4 p-4">
         {/* Image */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 overflow-hidden">
           <img
             src={news.img_src}
             alt="News thumbnail"
-            className="w-[17vw] object-cover rounded-md"
+            className={`w-[17vw] object-cover rounded-md ${isHovered ? 'scale-105' : 'scale-100'} transition-transform duration-300`}
           />
         </div>
 
@@ -90,11 +91,11 @@ const NewsCard = ({ news }) => {
               <div className="flex items-center gap-4  ">
                 <div className="flex items-center gap-1 text-gray-600">
                   <BsWhatsapp className="w-4 h-4" />
-                  <span className="text-sm">8</span>
+                  <span className="text-sm">{whatsapp}</span>
                 </div>
                 <div className="flex items-center gap-1 text-gray-600">
                   <AiOutlineLike className="w-4 h-4" />
-                  <span className="text-sm">12</span>
+                  <span className="text-sm">{likes}</span>
                 </div>
                 <BsBookmark className="w-4 h-4 text-gray-600" />
               </div>
@@ -102,7 +103,7 @@ const NewsCard = ({ news }) => {
 
             {/* Metadata */}
             <div className="flex items-center gap-3 text-sm text-gray-600 mb-2">
-              <span>5 hours ago</span>
+              <span>{index %2 ?index+2 : index+1} hours ago</span>
               <span>•</span>
               <span className="bg-gray-100 px-2 py-1 rounded">
                 {news.news_type}
