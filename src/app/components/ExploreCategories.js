@@ -1,43 +1,49 @@
 import CenterWrapper from '@/components/CenterWrapper'
 import { MainHeading, Paragraph, SubHeading } from '@/components/MainHeading'
+import img4 from "@/assets/b2b/image 214.png"
+import img5 from "@/assets/b2b/image 218.png"
+import img6 from "@/assets/b2b/image 219.png"
+import img3 from "@/assets/b2b/image 230.png"
+import img1 from "@/assets/b2b/image 303.png"
+import img2 from "@/assets/b2b/image 304.png"
 import Image from 'next/image'
 import React from 'react'
 
 const ExploreCategories = () => {
     const arr= [
         {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
+            icon: img1,
             categories: "Tmt , Angles Plates, CRC and more",
             link: ""
 
         },
-        {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
-            categories: "Tmt , Angles Plates, CRC and more",
+        {name: "Non Ferrous",
+            icon: img2,
+            categories: "Aluminium ingot, wire rods, and more",
             link: ""
 
         },
-        {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
-            categories: "Tmt , Angles Plates, CRC and more",
+        {name: "Polymers",
+            icon: img3,
+            categories: "PVC, PPHP, PPCP, LLDPE, and more",
             link: ""
 
         },
-        {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
-            categories: "Tmt , Angles Plates, CRC and more",
+        {name: "Chemicals",
+            icon: img4,
+            categories: "Methanol, acetic acid, acetone and more",
             link: ""
 
         },
-        {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
-            categories: "Tmt , Angles Plates, CRC and more",
+        {name: "Hardware",
+            icon: img5,
+            categories: "Drill machine, power saws, cutting wheel and more",
             link: ""
 
         },
-        {name: "Steels",
-            icon: "https://leadrp.net/wp-content/uploads/2024/01/steel-parts.jpg",
-            categories: "Tmt , Angles Plates, CRC and more",
+        {name: "Electrical appliances",
+            icon: img6,
+            categories: "Electrical wire, switches and more",
             link: ""
 
         }
@@ -63,7 +69,7 @@ const ExploreCategories = () => {
 
 const ExploreCard= ({name, icon, categories, link})=> {
     return (
-        <div className='p-6 space-y-4 bg-white rounded-xl border-[#4172AA] border '>
+        <div className='p-6 space-y-4 bg-white rounded-xl border-[#4172AA] border flex flex-col justify-between '>
             <div className='w-2/3 mx-auto '>
                 <Image alt={name} src={icon} width={400}  height={400}/>
             </div>

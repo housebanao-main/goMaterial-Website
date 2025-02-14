@@ -1,25 +1,26 @@
 import CenterWrapper from '@/components/CenterWrapper'
 import { MainHeading, Paragraph, SubHeading } from '@/components/MainHeading'
 import { MdOutlineArrowBackIos } from "react-icons/md";
+import img from "@/assets/b2b/image 341.png"
 import Image from 'next/image'
 import React from 'react'
 
 const CustomerReviews = () => {
     const arr= [
         {
-            icon: "https://placehold.jp/400x250.png",
+            icon: img,
             description : "As Managing Director of a renewable materials supplier company serving Indian Railways, solar industry, and commercial sectors, we encountered shipment delays, working capital shortages, and high raw material costs.",
             name: "Nitin Sharma",
             location : "GGN"
         },
         {
-            icon: "https://placehold.jp/400x250.png",
+            icon: img,
             description : "As Managing Director of a renewable materials supplier company serving Indian Railways, solar industry, and commercial sectors, we encountered shipment delays, working capital shortages, and high raw material costs.",
             name: "Nitin Sharma",
             location : "GGN"
         },
         {
-            icon: "https://placehold.jp/400x250.png",
+            icon: img,
             description : "As Managing Director of a renewable materials supplier company serving Indian Railways, solar industry, and commercial sectors, we encountered shipment delays, working capital shortages, and high raw material costs.",
             name: "Nitin Sharma",
             location : "GGN"
