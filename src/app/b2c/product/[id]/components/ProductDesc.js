@@ -4,6 +4,7 @@ import {
   Paragraph,
   SubHeading,
 } from "@/components/MainHeading";
+import Link from "next/link";
 import React from "react";
 
 const ProductDesc = () => {
@@ -22,9 +23,11 @@ const ProductDesc = () => {
           className="w-[10%] p-2 border rounded-md"
           defaultValue={1}
         />
-        <button className="bg-black w-4/5 text-white px-6 py-2 rounded-md">
-          Add to cart
-        </button>
+        <Link href="/b2c/cart" className=" w-4/5">
+          <button className="bg-black w-full text-white px-6 py-2 rounded-md">
+            Add to cart
+          </button>
+        </Link>
         <button className="p-2 w-[10%] border rounded-md">♡</button>
       </div>
       <div className="mt-6">

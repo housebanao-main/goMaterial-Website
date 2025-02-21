@@ -34,7 +34,7 @@ function RelatedProducts() {
     },
   ];
   return (
-    <div>
+    <div className="px-20">
       <MainHeading className={"font-bold text-center mb-7"}>
         Related Products
       </MainHeading>
