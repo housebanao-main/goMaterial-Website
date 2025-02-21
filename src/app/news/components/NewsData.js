@@ -14,7 +14,7 @@ export default function NewsData() {
     try {
       let {
         data: { news },
-      } = await axios.get(`${API_URL}/newz`);
+      } = await axios.get(`${API_URL}/news`);
       news = news.map((v) => ({
         ...v,
         tag_types: convertToArray(v.tag_types[0]),
@@ -44,8 +44,9 @@ export default function NewsData() {
     <div>
       {tagTypes.length > 0 && (
         <span className="flex gap-4 mb-4">
-          {tagTypes.map((v) => (
+          {tagTypes.map((v, idx) => (
             <span
+              key={idx}
               onClick={() => setSelectedTag(v)}
               className={`${
                 selectedTag == v
