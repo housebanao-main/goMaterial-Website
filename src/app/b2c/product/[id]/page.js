@@ -1,12 +1,18 @@
-import React from 'react'
+import CenterWrapper from "@/components/CenterWrapper";
+import Wrapper from "@/components/Wrapper";
+import React from "react";
+import Product from "./components/Product";
+import TabSection from "./components/TabSection";
 
-function ProductPage({params}) {
-
+function ProductPage({ params }) {
   return (
-    <div>
-      {params.id}
-    </div>
-  )
+    <Wrapper>
+      <CenterWrapper>
+        <Product />
+        <TabSection />
+      </CenterWrapper>
+    </Wrapper>
+  );
 }
 
-export default ProductPage
+export default ProductPage;
