@@ -1,15 +1,26 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useWishlistStore = create((set) => ({
-  wishlist: [1, 2, 3, 4],
-  updateWishlist: (product) =>
-    set((state) => {
-      if (state.wishlist.find((v) => v.id === product.id)) {
-        return { wishlist: state.wishlist.filter((v) => v.id !== product.id) };
-      } else {
-        return { wishlist: [...state.wishlist, product] };
-      }
+const useWishlistStore = create(
+  persist(
+    (set) => ({
+      wishlist: [],
+      updateWishlist: (product) =>
+        set((state) => {
+          if (state.wishlist.find((v) => v._id === product._id)) {
+            return {
+              wishlist: state.wishlist.filter((v) => v._id !== product._id),
+            };
+          } else {
+            return { wishlist: [...state.wishlist, product] };
+          }
+        }),
     }),
-}));
+    {
+      name: "b2cWishlistStore",
+      getStorage: () => localStorage,
+    }
+  )
+);
 
 export default useWishlistStore;

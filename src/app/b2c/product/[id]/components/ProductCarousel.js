@@ -1,20 +1,20 @@
 "use client";
 import React, { useState } from "react";
 
-const images = [
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400/000000/FFFFFF/png",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-];
+// const images = [
+//   "https://placehold.co/600x400",
+//   "https://placehold.co/600x400/000000/FFFFFF/png",
+//   "https://placehold.co/600x400",
+//   "https://placehold.co/600x400",
+// ];
 
-const ProductCarousel = () => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+const ProductCarousel = ({ product }) => {
+  const [selectedImage, setSelectedImage] = useState(product?.other_images[0]);
 
   return (
     <div className="flex items-center w-1/2 space-y-2 gap-3">
       <div className="flex flex-col space-y-2 justify-between">
-        {images.map((image, index) => (
+        {product?.other_images?.map((image, index) => (
           <img
             key={index}
             src={image}

@@ -1,31 +1,19 @@
 "use client";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
+import useCartStore from "../../../../store/cart"; // Import the zustand store
+import Link from "next/link";
 
 const CartItems = () => {
-  const cartItems = [
-    {
-      id: 1,
-      name: "Electric cutter - White",
-      style: "Modern",
-      price: 990,
-      quantity: 2,
-      image: "https://picsum.photos/300/200?random=4", // Replace with actual image URL
-    },
-    {
-      id: 2,
-      name: "Hand Sander",
-      price: 89,
-      quantity: 3,
-      image: "https://picsum.photos/300/200?random=4", // Replace with actual image URL
-    },
-  ];
+  const { b2cCart, addToB2cCart, removeFromB2cCart } = useCartStore(); // Destructure the store
 
   const updateQuantity = (id, delta) => {
-    const updatedItems = cartItems.map((item) => {
-      if (item.id === id) {
+    const updatedItems = b2cCart.map((item) => {
+      if (item._id === id) {
         const newQuantity = Math.min(10, Math.max(1, item.quantity + delta));
-        return { ...item, quantity: newQuantity };
+        const updatedItem = { ...item, quantity: newQuantity };
+        addToB2cCart(updatedItem); // Update the store
+        return updatedItem;
       }
       return item;
     });
@@ -45,30 +33,34 @@ const CartItems = () => {
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((item) => (
-            <tr key={item.id} className="border-b  items-center w-full">
+          {b2cCart.map((item) => (
+            <tr key={item._id} className="border-b  items-center w-full">
               <td className="p-2 text-center">
-                <button className="text-red-500 hover:text-red-700">
+                <button
+                  className="text-red-500 hover:text-red-700"
+                  onClick={() => removeFromB2cCart(item)}
+                >
                   <FaTimes />
                 </button>
               </td>
               <td className="p-2 flex items-center gap-2">
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={item.main_image}
+                  alt={item.product_name.split("|")[0]}
                   className="w-12 h-12 rounded"
                 />
-                <div>
-                  <p className="font-semibold">{item.name}</p>
-                  {item.style && (
-                    <p className="text-gray-500 text-sm">Style: {item.style}</p>
-                  )}
-                </div>
+                <Link href={`product/${item._id}`}>
+                  <div>
+                    <p className="font-semibold">
+                      {item.product_name.split("|")[0]}
+                    </p>
+                  </div>
+                </Link>
               </td>
-              <td className="p-2 text-center">₹{item.price.toFixed(2)}</td>
+              <td className="p-2 text-center">₹{item.selling_price}</td>
               <td className="p-2 text-center flex items-center justify-center gap-2">
                 <button
-                  onClick={() => updateQuantity(item.id, -1)}
+                  onClick={() => updateQuantity(item._id, -1)}
                   className="px-2 py-1 bg-gray-200 rounded"
                 >
                   -
@@ -80,14 +72,14 @@ const CartItems = () => {
                   readOnly
                 />
                 <button
-                  onClick={() => updateQuantity(item.id, 1)}
+                  onClick={() => updateQuantity(item._id, 1)}
                   className="px-2 py-1 bg-gray-200 rounded"
                 >
                   +
                 </button>
               </td>
               <td className="p-2 text-center">
-                ₹{(item.price * item.quantity).toFixed(2)}
+                ₹{(item.selling_price * item.quantity).toFixed(2)}
               </td>
             </tr>
           ))}

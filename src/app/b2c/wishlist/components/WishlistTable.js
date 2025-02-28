@@ -1,3 +1,5 @@
+import useWishlistStore from "@/store/wishlist";
+import Link from "next/link";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
@@ -40,10 +42,11 @@ const tempData = [
 ];
 
 const WishlistTable = () => {
-  const [products, setProducts] = useState(tempData);
+  // const [products, setProducts] = useState(tempData);
+  const { updateWishlist, wishlist } = useWishlistStore();
 
-  const handleRemove = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
+  const handleRemove = (product) => {
+    updateWishlist(product);
   };
 
   return (
@@ -54,28 +57,36 @@ const WishlistTable = () => {
             <th className="p-3 border"> </th>
             <th className="p-3 border text-left">Product name</th>
             <th className="p-3 border">Unit price</th>
-            <th className="p-3 border">Stock status</th>
+            {/* <th className="p-3 border">Stock status</th> */}
             <th className="p-3 border"> </th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id} className="border">
+          {wishlist.map((product) => (
+            <tr key={product._id} className="border">
               <td className="p-3 text-center">
                 <FaTimes
                   className="text-red-500 cursor-pointer"
-                  onClick={() => handleRemove(product.id)}
+                  onClick={() => handleRemove(product)}
                 />
               </td>
-              <td className="p-3 flex items-center gap-3">
-                <img src={product.image} alt={product.name} className="w-12 h-12 rounded" />
-                <span>{product.name}</span>
-                <button className="px-3 py-1 text-gray-700 bg-gray-200 rounded">
+              <Link href={`/b2c/product/${product._id}`}>
+                <td className="p-3 flex items-center gap-3">
+                  <img
+                    src={product.main_image}
+                    alt={product.product_name.split("|")[0]}
+                    className="w-12 h-12 rounded"
+                  />
+                  <span>{product.product_name.split("|")[0]}</span>
+                  {/* <button className="px-3 py-1 text-gray-700 bg-gray-200 rounded">
                   Quick View
-                </button>
-              </td>
-              <td className="p-3 text-center">{product.priceRange}</td>
-              <td className="p-3 text-green-600 text-center">{product.stockStatus}</td>
+                </button> */}
+                </td>
+              </Link>
+              <td className="p-3 text-center">₹{product.selling_price}</td>
+              {/* <td className="p-3 text-green-600 text-center">
+                {product.stockStatus}
+              </td> */}
               <td className="p-3 text-center">
                 <button className="px-4 py-2 bg-blue-900 text-white rounded">
                   Select options
