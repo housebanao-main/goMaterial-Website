@@ -19,7 +19,7 @@ export default function ProductCard({ id, image, name, category, price }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        <img src={image} alt={name} className="w-full h-72 object-cover" />
+        <img src={image} alt={name.split("|")[0]} className="w-full h-72 object-cover" />
         <div
           id="icons"
           className={`absolute bottom-0 flex w-full justify-between bg-white p-0 space-x-0  transition-all duration-300 ${
@@ -46,8 +46,8 @@ export default function ProductCard({ id, image, name, category, price }) {
       <div className="flex items-center justify-between px-4 bg-gray-100">
         <div className="p-4 space-y-1 ">
           <Paragraph className="text-sm text-gray-500">{category}</Paragraph>
-          <MainHeading className="font-semibold text-lg ">{name}</MainHeading>
-          <SubHeading className="">{price}</SubHeading>
+          <MainHeading className="font-semibold text-lg ">{name.split("|")[0]}</MainHeading>
+          <SubHeading className="">₹ {price}</SubHeading>
         </div>
         <button className="mt-4 p-4 bg-gray-200 rounded-full text-2xl border border-gray-700 ">
           <BsHandbag className="text-gray-600" />
