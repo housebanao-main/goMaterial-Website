@@ -58,7 +58,7 @@ const CartItems = () => {
                 </Link>
               </td>
               <td className="p-2 text-center">₹{item.selling_price}</td>
-              <td className="p-2 text-center flex items-center justify-center gap-2">
+              <td className="p-2  text-center flex items-center justify-center gap-2  ">
                 <button
                   onClick={() => updateQuantity(item._id, -1)}
                   className="px-2 py-1 bg-gray-200 rounded"
@@ -66,7 +66,7 @@ const CartItems = () => {
                   -
                 </button>
                 <input
-                  type="number"
+                  type="text"
                   className="w-12 border rounded p-1 text-center"
                   value={item.quantity}
                   readOnly

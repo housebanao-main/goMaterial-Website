@@ -98,7 +98,7 @@ const ProductDesc = ({ product }) => {
         }}
       ></p> */}
       <div className="flex items-center mt-4 space-x-2 w-full">
-        <input
+        {/* <input
           type="number"
           className="w-[10%] p-2 border rounded-md"
           // defaultValue={1}
@@ -110,7 +110,29 @@ const ProductDesc = ({ product }) => {
               return;
             }
           }}
-        />
+        /> */}
+        <div className="flex items-center gap-2">
+        <button
+                  onClick={() => quantity-1>0 && setQuantity(quantity - 1)
+                  }
+                  className="px-2 py-1 bg-gray-200 rounded"
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  className="w-12 border rounded p-1 text-center"
+                  value={quantity}
+                  readOnly
+                  min={1}
+                />
+                <button
+                  onClick={() => setQuantity(quantity +1)}
+                  className="px-2 py-1 bg-gray-200 rounded"
+                >
+                  +
+                </button>
+        </div>
         <Link href="/b2c/cart" className=" w-4/5">
           <button
             className="bg-black w-full text-white px-6 py-2 rounded-md"

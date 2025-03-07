@@ -14,7 +14,7 @@ const totalPrice = b2cCart.reduce((acc, item) => acc + (item.selling_price * ite
         <tbody>
           <tr className="border-b">
             <td className="p-2 font-semibold">Subtotal</td>
-            <td className="p-2 text-right">₹ {totalPrice}</td>
+            <td className="p-2 text-right">₹ {totalPrice.toFixed(2)}</td>
           </tr>
           <tr className="border-b">
             <td className="p-2 font-semibold">Shipping</td>
@@ -28,7 +28,7 @@ const totalPrice = b2cCart.reduce((acc, item) => acc + (item.selling_price * ite
           </tr>
           <tr>
             <td className="p-2 font-semibold">Total</td>
-            <td className="p-2 text-right font-semibold">₹ {totalPrice}</td>
+            <td className="p-2 text-right font-semibold">₹ {totalPrice.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>
