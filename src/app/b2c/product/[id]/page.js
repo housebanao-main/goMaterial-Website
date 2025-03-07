@@ -30,7 +30,7 @@ async function ProductPage({ params }) {
     <Wrapper>
       <CenterWrapper className={"flex flex-col gap-y-20"}>
         <Product product={product} />
-        <TabSection />
+        <TabSection product={product} />
         <RelatedProducts />
       </CenterWrapper>
     </Wrapper>

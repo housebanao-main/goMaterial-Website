@@ -1,8 +1,13 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
-const TabSection = () => {
+const TabSection = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
+
+  useEffect(() => {
+    const desc = document.querySelector(".desc");
+    desc.innerHTML = product?.product_details;
+  }, []);
 
   return (
     <div className="w-full px-20">
@@ -19,28 +24,51 @@ const TabSection = () => {
         </button>
         <button
           className={`px-4 py-2 font-semibold ${
-            activeTab === "reviews"
-              ? "border-b-2 border-black"
-              : "text-gray-500"
+            activeTab === "specs" ? "border-b-2 border-black" : "text-gray-500"
           }`}
-          onClick={() => setActiveTab("reviews")}
+          onClick={() => setActiveTab("specs")}
         >
-          Reviews (0)
+          Specifications
         </button>
       </div>
       <div className="mt-4">
-        {activeTab === "description" && (
-          <p className="text-gray-600">
-            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
-            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
-            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
-            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
-            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
-          </p>
-        )}
-        {activeTab === "reviews" && (
-          <p className="text-gray-600">No reviews yet.</p>
+        {/* {activeTab === "description" && ( */}
+        <div
+          className={`text-gray-600 desc ${
+            activeTab === "description" ? "block" : "hidden"
+          }`}
+        ></div>
+        {/* )} */}
+        {activeTab === "specs" && (
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-2 px-4 border border-gray-300 text-left">
+                    Specification
+                  </th>
+                  <th className="py-2 px-4 border border-gray-300 text-left">
+                    Value
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(product?.prod_specs).map((key, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  >
+                    <td className="py-2 px-4 border border-gray-300 font-medium">
+                      {key}
+                    </td>
+                    <td className="py-2 px-4 border border-gray-300">
+                      {product?.prod_specs[key]}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
