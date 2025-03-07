@@ -24,14 +24,14 @@ async function getProduct(productId) {
 
 async function ProductPage({ params }) {
   const product = await getProduct(params.id);
-  console.log(product);
+  // console.log(product);
 
   return (
     <Wrapper>
       <CenterWrapper className={"flex flex-col gap-y-20"}>
         <Product product={product} />
         <TabSection product={product} />
-        <RelatedProducts />
+        <RelatedProducts product={product}  />
       </CenterWrapper>
     </Wrapper>
   );
