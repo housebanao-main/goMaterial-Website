@@ -7,6 +7,7 @@ import img2 from "@/assets/b2c/image 204.jpg";
 import img3 from "@/assets/b2c/image 207.png";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 export default function GreatDeals() {
   const data = [
@@ -17,6 +18,7 @@ export default function GreatDeals() {
       textColor: "#6FB3A2",
       image: img1,
       isImageTop: true,
+      link: "/b2c/products?mainCategory=WALL LIGHTS"
     },
     {
       title: "Cement",
@@ -25,6 +27,7 @@ export default function GreatDeals() {
       textColor: "#B38F7A",
       image: img3,
       isImageTop: false,
+      link: "/b2c/products?mainCategory=CEMENT"
     },
     {
       title: "Sanitaryware & fittings",
@@ -33,7 +36,10 @@ export default function GreatDeals() {
       textColor: "#A87FB3",
       image: img2,
       isImageTop: true,
+      link: "/b2c/products?mainCategory=BATHROOM ACCESSORY"
+
     },
+    
   ];
   return (
     <CenterWrapper className={"space-y-8"}>
@@ -42,7 +48,9 @@ export default function GreatDeals() {
       </MainHeading>
       <div className="flex items-center justify-between gap-4">
         {data.map((deal, index) => (
-          <Card key={index} data={deal} />
+          <Link href={deal.link} key={index}>
+          <Card  data={deal} />
+          </Link>
         ))}
       </div>
     </CenterWrapper>

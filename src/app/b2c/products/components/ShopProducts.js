@@ -6,24 +6,33 @@ import { Pagination } from "@mui/material";
 import { API_URL } from "@/utils/constants";
 
 
-export default  function ShopProducts({products, limit, page,TotalProducts}) {
+export default  function ShopProducts({products, limit, page,TotalPages ,mainCategory, subCategory}) {
   // const data = await getData();
   const [allProducts, setProducts] = useState(products);
   const [pageNumber,setPageNumber] = useState(page);
   const [limitNumber, setLimitNumber] = useState(limit);
   
-  async function getData() {
-    console.log("DATA");
+  async function getData(mainCategory, subCategory) {
+    // console.log("DATA");
     try {
-      const response = await fetch(`${API_URL}/b2c/products?page=${pageNumber}&limit=${limitNumber}`, {
-        next: {
-          revalidate: 3600,
-        },
-      });
+      let baseUrl =`${API_URL}/b2c/products?page=${pageNumber}&limit=${limitNumber}`
+      if(mainCategory){
+        baseUrl+=`&mainCategory=${mainCategory}`
+      }
+      if(subCategory){
+        baseUrl+=`&subCategory=${subCategory}`
+      }
+    
+        const response = await fetch(baseUrl, {
+          next: {
+            revalidate: 3600,
+          },
+        });
+    
       const data = await response.json();
     setProducts(data.products);
-    setPage(data.page);
-    setLimit(data.limit);
+    setPageNumber(data.page);
+    setLimitNumber(data.limit);
     } catch (error) {
       console.log(error.message);
       return [];
@@ -31,7 +40,7 @@ export default  function ShopProducts({products, limit, page,TotalProducts}) {
   }
   
   useEffect(()=> {
-    getData();
+    getData(mainCategory, subCategory);
   }, [pageNumber, limitNumber]);
   return (
 
@@ -43,7 +52,7 @@ export default  function ShopProducts({products, limit, page,TotalProducts}) {
         <ViewProducts products={allProducts} limit={limitNumber} page= {pageNumber} />
         <div className="mt-12 flex items-center justify-center">
 
-      <Pagination onChange={(e,value)=> setPageNumber(value)} count={TotalProducts} variant="outlined"color="primary"  size="large"/>
+      <Pagination onChange={(e,value)=> setPageNumber(value)} count={TotalPages} variant="outlined"color="primary"  size="large"/>
         </div>
       </div>
     </div>

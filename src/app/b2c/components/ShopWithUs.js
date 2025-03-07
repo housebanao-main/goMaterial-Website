@@ -12,6 +12,7 @@ import img7 from "@/assets/b2c/image 220.png";
 import img8 from "@/assets/b2c/image 221.png";
 import img3 from "@/assets/b2c/image_230.png";
 import Image from "next/image";
+import Link from "next/link";
 
 const categories = [
   "All",
@@ -29,6 +30,7 @@ const products = [
     category: "Faucets & showers",
     image: img1,
     bgColor: "bg-purple-100",
+    category: "LAV FAUCET"
   },
   {
     id: 2,
@@ -36,6 +38,8 @@ const products = [
     category: "Kitchen accessories",
     image: img2,
     bgColor: "bg-yellow-100",
+    category: "WALL MOUNT LAV FAUCET"
+
   },
   {
     id: 3,
@@ -43,6 +47,9 @@ const products = [
     category: "Plumbing & Sanitary",
     image: img3,
     bgColor: "bg-blue-100",
+    category: "BATH TUBS"
+
+    
   },
   {
     id: 4,
@@ -50,6 +57,8 @@ const products = [
     category: "Faucets & showers",
     image: img4,
     bgColor: "bg-pink-100",
+    category: "STOP COCK"
+
   },
   {
     id: 5,
@@ -57,6 +66,7 @@ const products = [
     category: "Kitchen accessories",
     image: img5,
     bgColor: "bg-teal-100",
+    category:"SOAP DISPENSER"
   },
   {
     id: 6,
@@ -64,6 +74,7 @@ const products = [
     category: "Plumbing & Sanitary",
     image: img6,
     bgColor: "bg-orange-100",
+    category: "THERMOSTATIC VALVE"
   },
   {
     id: 7,
@@ -71,6 +82,7 @@ const products = [
     category: "Faucets & showers",
     image: img7,
     bgColor: "bg-green-100",
+    category : "HEALTH FAUCET"
   },
   {
     id: 8,
@@ -78,6 +90,7 @@ const products = [
     category: "Faucets & showers",
     image: img8,
     bgColor: "bg-indigo-100",
+    category: "SHOWERHEAD"
   },
 ];
 
@@ -115,7 +128,8 @@ const ShopWithUs = () => {
 
       {/* Product Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
+        {filteredProducts.map((product,idx) => (
+          <Link href={`/b2c/products?mainCategory=${product.category}`} key={idx}>
           <div
             key={product.id}
             className={`p-4 rounded-lg shadow-md ${product.bgColor}`}
@@ -134,6 +148,7 @@ const ShopWithUs = () => {
               </div>
             </div>
           </div>
+          </Link>
         ))}
       </div>
     </CenterWrapper>

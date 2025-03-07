@@ -1,7 +1,12 @@
+'use client';
+import useCartStore from "@/store/cart";
 import React from "react";
 import { FaTruck } from "react-icons/fa";
 
 const CartTotals = () => {
+const {b2cCart} = useCartStore();
+const totalPrice = b2cCart.reduce((acc, item) => acc + (item.selling_price * item.quantity), 0);
+
   return (
     <div className="bg-white p-4 shadow-md w-[40%] rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Cart totals</h2>
@@ -9,7 +14,7 @@ const CartTotals = () => {
         <tbody>
           <tr className="border-b">
             <td className="p-2 font-semibold">Subtotal</td>
-            <td className="p-2 text-right">₹2,247.00</td>
+            <td className="p-2 text-right">₹ {totalPrice}</td>
           </tr>
           <tr className="border-b">
             <td className="p-2 font-semibold">Shipping</td>
@@ -23,7 +28,7 @@ const CartTotals = () => {
           </tr>
           <tr>
             <td className="p-2 font-semibold">Total</td>
-            <td className="p-2 text-right font-semibold">₹2,247.00</td>
+            <td className="p-2 text-right font-semibold">₹ {totalPrice}</td>
           </tr>
         </tbody>
       </table>

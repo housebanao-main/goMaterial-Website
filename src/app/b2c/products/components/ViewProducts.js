@@ -16,7 +16,7 @@ export default function ViewProducts({products, limit, page}) {
     <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     {products.map((product) => (
       <Link href={`/b2c/product/${product._id}`} key={product._id}>
-      <ProductCard id={product._id} name={product.product_name} price={product.selling_price} image={product.main_image} category={product.prod_specs["Product Type"]}/>
+      <ProductCard id={product._id} name={product.product_name} price={product.selling_price} image={product.main_image} category={product.prod_specs["Product Line"]}/>
       </Link>
     ))}
 
