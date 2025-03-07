@@ -8,7 +8,7 @@ import {
 import useCartStore from "@/store/cart";
 import useWishlistStore from "@/store/wishlist";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 
@@ -27,20 +27,45 @@ const ProductDesc = ({ product }) => {
     updateWishlist(product);
   };
 
+  useEffect(() => {
+    const highlights = document.querySelector(".highlights");
+
+    if (product) {
+      highlights.innerHTML = product?.highlights;
+      const ul = document.querySelector(".highlights ul");
+      ul.style.listStyleType = "disc";
+    }
+  }, []);
+
   return (
     <div className="w-1/2">
       <MainHeading className="font-bold">
-        {product.product_name.split("|")[0]}
+        {product?.product_name.split("|")[0]}
       </MainHeading>
-      <MainHeading className="font-semibold mt-2">
-        ₹{product.selling_price}
-      </MainHeading>
-      <p
+      <div className="mt-4 mb-6">
+        <div className="flex items-center gap-4">
+          <MainHeading className="font-semibold text-2xl text-black">
+            ₹{product?.selling_price}
+          </MainHeading>
+          <MainHeading className="font-medium text-xl line-through text-gray-500">
+            ₹{product?.cost_price}
+          </MainHeading>
+          <div className="bg-green-100 px-3 py-1 rounded-md">
+            <MainHeading className="font-semibold text-lg text-green-700">
+              {Math.round(
+                100 - (product?.selling_price / product?.cost_price) * 100
+              )}
+              % OFF
+            </MainHeading>
+          </div>
+        </div>
+      </div>
+      {/* <p
         className="text-gray-600 mt-4"
         dangerouslySetInnerHTML={{
           __html: product.product_details.split("<p>")[3].split("</p>")[0],
         }}
-      ></p>
+      ></p> */}
       <div className="flex items-center mt-4 space-x-2 w-full">
         <input
           type="number"
@@ -70,7 +95,7 @@ const ProductDesc = ({ product }) => {
           onClick={handleWishlist}
           className="p-2 w-[10%] border rounded-md flex justify-center"
         >
-          {!wishlist.find((item) => item.id === product.id) ? (
+          {!wishlist.find((item) => item._id === product._id) ? (
             <FaRegHeart />
           ) : (
             <FaHeart />
@@ -78,7 +103,7 @@ const ProductDesc = ({ product }) => {
         </button>
         {/* </Link> */}
       </div>
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <p className="font-bold">SKU:</p>
         <p className="text-gray-600">{product.sku_code}</p>
       </div>
@@ -89,7 +114,8 @@ const ProductDesc = ({ product }) => {
       <div className="mt-2">
         <p className="font-bold">Model No:</p>
         <p className="text-gray-600">{product.model_no}</p>
-      </div>
+      </div> */}
+      <div className="highlights mt-6"></div>
     </div>
   );
 };
