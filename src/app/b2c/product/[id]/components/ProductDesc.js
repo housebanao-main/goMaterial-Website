@@ -11,6 +11,13 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import {
+  AiOutlineShop,
+  AiOutlineSync,
+  AiOutlineCar,
+  AiOutlineDollarCircle,
+  AiOutlineClockCircle,
+} from "react-icons/ai";
 
 const ProductDesc = ({ product }) => {
   const { addToB2cCart } = useCartStore();
@@ -36,6 +43,30 @@ const ProductDesc = ({ product }) => {
       ul.style.listStyleType = "disc";
     }
   }, []);
+
+  const icons = [
+    {
+      icon: <AiOutlineShop size={20} color="#3b82f6" />,
+      label: "24/7 Support",
+    },
+    { icon: <AiOutlineSync size={20} color="#3b82f6" />, label: "Returnable" },
+    {
+      icon: <AiOutlineCar size={20} color="#3b82f6" />,
+      label: "GoMaterial Delivered",
+    },
+    {
+      icon: <AiOutlineDollarCircle size={20} color="#3b82f6" />,
+      label: "Delivery Charges Extra",
+    },
+    {
+      icon: <AiOutlineDollarCircle size={20} color="#3b82f6" />,
+      label: "Unloading Charges Extra",
+    },
+    {
+      icon: <AiOutlineClockCircle size={20} color="#3b82f6" />,
+      label: "Usually Ships in 24 - 72 hours",
+    },
+  ];
 
   return (
     <div className="w-1/2">
@@ -116,6 +147,26 @@ const ProductDesc = ({ product }) => {
         <p className="text-gray-600">{product.model_no}</p>
       </div> */}
       <div className="highlights mt-6"></div>
+
+      <div className="mt-8 mb-4">
+        <SubHeading className="font-semibold mb-3">
+          Delivery & Services
+        </SubHeading>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {icons.map((icon, index) => (
+            <Icon key={index} name={icon.label} icon={icon.icon} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Icon = ({ name, icon }) => {
+  return (
+    <div className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-200 transition-all duration-300">
+      <div className="p-2 bg-blue-50 rounded-full">{icon}</div>
+      <Paragraph className="text-sm text-gray-700">{name}</Paragraph>
     </div>
   );
 };

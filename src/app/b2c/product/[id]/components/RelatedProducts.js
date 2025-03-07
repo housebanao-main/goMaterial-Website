@@ -14,7 +14,7 @@ const relatedProducts = async (product) => {
 
 async function RelatedProducts({ product }) {
   const { products } = await relatedProducts(product);
-  console.log(products);
+  // console.log(products);
 
   const arr = [
     {
